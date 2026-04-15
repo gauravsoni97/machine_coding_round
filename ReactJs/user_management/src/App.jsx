@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from "react";
+import AddUserForm from "./components/AddUserForm";
+import UserList from "./components/UserList";
 
 const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+  const [listData, setListData] = useState([]);
 
-export default App
+  return (
+    <div>
+      <AddUserForm setListData={setListData} />
+      <UserList listData={listData} />
+    </div>
+  );
+};
+
+export default App;
