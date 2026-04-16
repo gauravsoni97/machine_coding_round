@@ -7,6 +7,7 @@ const AddUserForm = ({setListData}) => {
     userName: "",
     email: "",
     phone: "",
+    createdAt:null,
   });
 
   const handleChange = (e) => {
@@ -22,7 +23,8 @@ const AddUserForm = ({setListData}) => {
     if (userData.userName && userData.email && userData.phone) {
       const userWithId = {
         ...userData,
-        userId: Date.now()
+        userId: Date.now(),
+        createdAt: Date.now(),
       };
       setListData((prevList) => [...prevList, userWithId]);
       setUserData({ userName: "", email: "", phone: "" });

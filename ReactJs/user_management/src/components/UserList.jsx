@@ -4,7 +4,6 @@ import "../styles/UserList.css";
 const UserList = ({ listData, onDeleteUser }) => {
   return (
     <div className="user-list-container">
-      <h1>User Directory</h1>
       {listData.length > 0 ? (
         <div className="users-table-container">
           <table className="users-table">

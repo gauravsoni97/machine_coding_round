@@ -2,16 +2,21 @@ import React, { useState, useEffect } from "react";
 import AddUserForm from "./components/AddUserForm";
 import UserList from "./components/UserList";
 import "./styles/App.css";
+import Filters from "./components/Filters";
 
 const App = () => {
   const [listData, setListData] = useState(() => {
     const savedUsers = localStorage.getItem('userList');
     return savedUsers ? JSON.parse(savedUsers) : [];
   });
+  
 
   useEffect(() => {
     localStorage.setItem('userList', JSON.stringify(listData));
   }, [listData]);
+
+
+  console.log({listData})
 
   const handleDeleteUser = (userId) => {
     setListData((prevList) => prevList.filter((user) => user.userId !== userId));
@@ -23,6 +28,7 @@ const App = () => {
         <AddUserForm setListData={setListData} />
       </div>
       <div className="list-section">
+        <Filters/>
         <UserList listData={listData} onDeleteUser={handleDeleteUser} />
       </div>
     </div>
