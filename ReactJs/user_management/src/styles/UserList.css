@@ -1,42 +1,99 @@
 .user-list-container {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1400px;
+  margin: 40px auto 60px;
+  padding: 0 20px;
 }
 
 .user-list-container h1 {
   text-align: center;
-  color: #2c3e50;
+  color: #000000;
   margin-bottom: 40px;
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 600;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, #ff7f50, #ff8f61);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .users-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
   padding: 0;
 }
 
 .user-card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.2s ease;
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(255, 127, 80, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.user-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff7f50, #ff8f61, #ffb366);
+  border-radius: 20px 20px 0 0;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(238, 90, 82, 0.3);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-card:hover .delete-icon {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.delete-icon:hover {
+  background: linear-gradient(135deg, #ee5a52, #dc4545);
+  box-shadow: 0 6px 16px rgba(238, 90, 82, 0.4);
+  transform: scale(1.1);
+}
+
+.delete-icon:active {
+  transform: scale(0.95);
 }
 
 .user-card:hover {
-  border-color: #d0d0d0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  border-color: rgba(255, 143, 97, 0.3);
+  box-shadow: 0 20px 60px rgba(255, 143, 97, 0.15);
+  transform: translateY(-8px);
 }
 
 .user-card-field {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .user-card-field:last-child {
@@ -44,28 +101,75 @@
 }
 
 .user-card-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #888;
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
   display: block;
+  opacity: 0.8;
 }
 
 .user-card-value {
   font-size: 16px;
-  color: #2c3e50;
+  color: #1a1a1a;
   font-weight: 500;
   word-break: break-word;
+  line-height: 1.4;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 143, 97, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.user-card:hover .user-card-value {
+  border-bottom-color: rgba(255, 143, 97, 0.3);
+}
+
+.user-card-value:last-child {
+  border-bottom: none;
+}
+
+/* Responsive design improvements */
+@media (max-width: 1200px) {
+  .users-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
-  .users-grid {
-    grid-template-columns: 1fr;
+  .user-list-container {
+    margin: 20px auto 40px;
+    padding: 0 16px;
   }
 
-  .user-list-container {
-    margin: 20px auto;
+  .user-list-container h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .users-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .user-card {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .user-card::before {
+    height: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-card {
+    padding: 20px;
+  }
+
+  .user-card-value {
+    font-size: 15px;
   }
 }

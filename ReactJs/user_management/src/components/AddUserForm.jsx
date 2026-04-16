@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/AddUserForm.css";
 
-const AddUserForm = ({setListData}) => {
+const AddUserForm = ({setListData, openModal, setOpenModal}) => {
   const [userData, setUserData] = useState({
+    userId : null,
     userName: "",
     email: "",
     phone: "",
   });
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,46 +22,63 @@ const AddUserForm = ({setListData}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userData.userName && userData.email && userData.phone) {
-      setListData([userData])
+      const userWithId = {
+        ...userData,
+        userId: Date.now()
+      };
+      setListData((prevList) => [...prevList, userWithId]);
       setUserData({ userName: "", email: "", phone: "" });
-      console.log("Submitted user:", userData);
+      setOpenModal(false);
+      console.log("Submitted user:", userWithId);
     }
   };
 
-  return (
-    <div className="form-container">
-      <h2>Add New User</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input
-            name="userName"
-            value={userData.userName}
-            onChange={handleChange}
-            type="text"
-            placeholder="Full Name"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-            type="email"
-            placeholder="Email"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            name="phone"
-            value={userData.phone}
-            onChange={handleChange}
-            type="tel"
-            placeholder="Mobile No"
-          />
-        </div>
+  const handleClose = () => {
+    setOpenModal(false);
+    setUserData({ userId: null, userName: "", email: "", phone: "" });
+  };
 
-        <button type="submit">Add User</button>
-      </form>
+  if (!openModal) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <button className="close-button" onClick={handleClose}>&times;</button>
+        <div className="form-container">
+          <h2>Add New User</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                name="userName"
+                value={userData.userName}
+                onChange={handleChange}
+                type="text"
+                placeholder="Full Name"
+              />
+            </div>
+            <div className="form-group">
+              <input
+                name="email"
+                value={userData.email}
+                onChange={handleChange}
+                type="email"
+                placeholder="Email"
+              />
+            </div>
+            <div className="form-group">
+              <input
+                name="phone"
+                value={userData.phone}
+                onChange={handleChange}
+                type="tel"
+                placeholder="Mobile No"
+              />
+            </div>
+
+            <button type="submit">Add User</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
