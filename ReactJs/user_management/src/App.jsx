@@ -8,7 +8,6 @@ const App = () => {
     const savedUsers = localStorage.getItem('userList');
     return savedUsers ? JSON.parse(savedUsers) : [];
   });
-  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('userList', JSON.stringify(listData));
@@ -19,10 +18,13 @@ const App = () => {
   };
 
   return (
-    <div>
-      <button className="add-user-btn" onClick={() => setOpenModal(true)}>Add New User</button>
-      <AddUserForm setListData={setListData} openModal={openModal} setOpenModal={setOpenModal} />
-      <UserList listData={listData} onDeleteUser={handleDeleteUser} />
+    <div className="app-container">
+      <div className="form-section">
+        <AddUserForm setListData={setListData} />
+      </div>
+      <div className="list-section">
+        <UserList listData={listData} onDeleteUser={handleDeleteUser} />
+      </div>
     </div>
   );
 };

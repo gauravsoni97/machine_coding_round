@@ -1,175 +1,174 @@
 .user-list-container {
-  max-width: 1400px;
-  margin: 40px auto 60px;
-  padding: 0 20px;
+  max-width: 1200px;
+  margin: 48px auto 60px;
+  padding: 0 32px;
 }
 
 .user-list-container h1 {
   text-align: center;
   color: #000000;
-  margin-bottom: 40px;
-  font-size: 36px;
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6);
-  background: linear-gradient(135deg, #ff7f50, #ff8f61);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 32px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
-.users-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-  padding: 0;
-}
-
-.user-card {
-  position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  padding: 32px;
-  box-shadow: 0 8px 32px rgba(255, 127, 80, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.users-table-container {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   overflow: hidden;
-  backdrop-filter: blur(10px);
 }
 
-.user-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #ff7f50, #ff8f61, #ffb366);
-  border-radius: 20px 20px 0 0;
-}
-
-.delete-icon {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
-  border: none;
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
-  border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(238, 90, 82, 0.3);
-  opacity: 0;
-  transform: translateY(-8px) scale(0.8);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.user-card:hover .delete-icon {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.delete-icon:hover {
-  background: linear-gradient(135deg, #ee5a52, #dc4545);
-  box-shadow: 0 6px 16px rgba(238, 90, 82, 0.4);
-  transform: scale(1.1);
-}
-
-.delete-icon:active {
-  transform: scale(0.95);
-}
-
-.user-card:hover {
-  border-color: rgba(255, 143, 97, 0.3);
-  box-shadow: 0 20px 60px rgba(255, 143, 97, 0.15);
-  transform: translateY(-8px);
-}
-
-.user-card-field {
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.user-card-field:last-child {
-  margin-bottom: 0;
-}
-
-.user-card-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-  display: block;
-  opacity: 0.8;
-}
-
-.user-card-value {
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
   font-size: 16px;
-  color: #1a1a1a;
-  font-weight: 500;
-  word-break: break-word;
-  line-height: 1.4;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 143, 97, 0.1);
-  transition: border-color 0.3s ease;
 }
 
-.user-card:hover .user-card-value {
-  border-bottom-color: rgba(255, 143, 97, 0.3);
+.users-table thead {
+  background: #fafafa;
+  color: #000000;
 }
 
-.user-card-value:last-child {
+.users-table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.users-table th:first-child {
+  padding-left: 24px;
+}
+
+.users-table th:last-child {
+  padding-right: 24px;
+}
+
+.users-table tbody tr {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.users-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.users-table tbody tr:last-child {
   border-bottom: none;
 }
 
-/* Responsive design improvements */
-@media (max-width: 1200px) {
-  .users-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
+.users-table td {
+  padding: 16px 20px;
+  color: #374151;
+  font-weight: 400;
+  vertical-align: middle;
 }
 
+.users-table td:first-child {
+  padding-left: 24px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.users-table td:last-child {
+  padding-right: 24px;
+}
+
+.delete-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.delete-btn:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.delete-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.empty-state {
+  text-align: center;
+  padding: 64px 32px;
+  color: #6b7280;
+  font-size: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.empty-state-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
   .user-list-container {
-    margin: 20px auto 40px;
+    margin: 32px auto 40px;
     padding: 0 16px;
   }
 
   .user-list-container h1 {
-    font-size: 28px;
-    margin-bottom: 30px;
+    font-size: 24px;
+    margin-bottom: 24px;
   }
 
-  .users-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .users-table-container {
+    border-radius: 8px;
   }
 
-  .user-card {
-    padding: 24px;
-    border-radius: 16px;
+  .users-table th,
+  .users-table td {
+    padding: 12px 16px;
+    font-size: 14px;
   }
 
-  .user-card::before {
-    height: 3px;
+  .users-table th:first-child,
+  .users-table td:first-child {
+    padding-left: 16px;
+  }
+
+  .users-table th:last-child,
+  .users-table td:last-child {
+    padding-right: 16px;
+  }
+
+  .delete-btn {
+    padding: 4px 8px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
-  .user-card {
-    padding: 20px;
+  .users-table-container {
+    overflow-x: auto;
   }
 
-  .user-card-value {
-    font-size: 15px;
+  .users-table {
+    min-width: 600px;
   }
 }

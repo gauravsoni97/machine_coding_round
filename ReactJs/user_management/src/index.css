@@ -11,16 +11,18 @@ body,
 }
 
 body {
-  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fff5f0;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #ffffff;
   color: #000000;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.12), transparent 22%);
+  background: transparent;
   pointer-events: none;
 }
