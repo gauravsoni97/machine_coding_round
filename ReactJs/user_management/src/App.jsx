@@ -11,6 +11,7 @@ const App = () => {
   });
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [debounceTerm, setDebounceTerm] = useState("");
 
   useEffect(() => {
     localStorage.setItem("userList", JSON.stringify(listData));
@@ -22,8 +23,17 @@ const App = () => {
     );
   };
 
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
+      setDebounceTerm(searchTerm);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
   const filteredUsers = listData.filter((user) => {
-    const term = searchTerm.toLowerCase();
+    const term = debounceTerm.toLowerCase();
     return (
       user.userName?.toLowerCase().includes(term) ||
       user.phone?.toLowerCase().includes(term) ||
