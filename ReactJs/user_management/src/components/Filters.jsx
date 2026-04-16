@@ -1,6 +1,6 @@
 import React from "react";
 
-const Filters = ({}) => {
+const Filters = ({searchTerm, setSearchTerm}) => {
 
   return (
     <section className="filters-section">
@@ -19,6 +19,8 @@ const Filters = ({}) => {
             id="search"
             className="filters-input"
             type="text"
+            value={searchTerm}
+            onChange={(event)=>setSearchTerm(event.target.value)}
             placeholder="Search by name or email"
           />
         </div>
