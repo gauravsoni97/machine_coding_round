@@ -28,8 +28,8 @@ const Filters = ({ searchTerm, setSearchTerm, sortByFilter }) => {
           <select className="filters-select" onChange={(e) => sortByFilter(e.target.value)}>
             <option value="latest">Newest first</option>
             <option value="oldest">Oldest first</option>
-            <option value="name-asc">Name A â†’ Z</option>
-            <option value="name-desc">Name Z â†’ A</option>
+            <option value="name-asc">Name A to Z</option>
+            <option value="name-desc">Name Z to A</option>
           </select>
         </div>
       </div>
