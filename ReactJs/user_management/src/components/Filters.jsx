@@ -1,11 +1,11 @@
 ﻿import React from "react";
 
-const Filters = ({ searchTerm, setSearchTerm, sortByFilter }) => {
+const Filters = ({ searchTerm, setSearchTerm, sortByFilter, removeAllFilters}) => {
   return (
     <section className="filters-section">
       <div className="filters-header">
         <div></div>
-        <button type="button" className="filters-reset">
+        <button type="button" className="filters-reset" onClick={removeAllFilters}>
           Reset filters
         </button>
       </div>

@@ -10,6 +10,12 @@ const App = () => {
     return savedUsers ? JSON.parse(savedUsers) : [];
   });
 
+
+const [originalList, setOriginalList] = useState(() => {
+  const savedUsers = localStorage.getItem("userList");
+  return savedUsers ? JSON.parse(savedUsers) : [];
+});
+
   const [searchTerm, setSearchTerm] = useState("");
   const [debounceTerm, setDebounceTerm] = useState("");
 
@@ -17,27 +23,27 @@ const App = () => {
     localStorage.setItem("userList", JSON.stringify(listData));
   }, [listData]);
 
-  const handleDeleteUser = (userId) => {
-    setListData((prevList) =>
-      prevList.filter((user) => user.userId !== userId),
-    );
-  };
-
-const sortByFilter = (type) => {
-  let sorted = [...listData];
-
-  if (type === "latest") {
-    sorted.sort((a, b) => b.userId - a.userId);
-  } else if (type === "oldest") {
-    sorted.sort((a, b) => a.userId - b.userId);
-  } else if (type === "name-asc") {
-    sorted.sort((a, b) => a.userName.localeCompare(b.userName));
-  } else if (type === "name-desc") {
-    sorted.sort((a, b) => b.userName.localeCompare(a.userName));
-  }
-
-  setListData(sorted);
+const handleDeleteUser = (userId) => {
+  const updated = listData.filter((user) => user.userId !== userId);
+  setListData(updated);
+  setOriginalList(updated);
 };
+
+  const sortByFilter = (type) => {
+    let sorted = [...originalList];
+
+    if (type === "latest") {
+      sorted.sort((a, b) => b.userId - a.userId);
+    } else if (type === "oldest") {
+      sorted.sort((a, b) => a.userId - b.userId);
+    } else if (type === "name-asc") {
+      sorted.sort((a, b) => a.userName.localeCompare(b.userName));
+    } else if (type === "name-desc") {
+      sorted.sort((a, b) => b.userName.localeCompare(a.userName));
+    }
+
+    setListData(sorted);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -56,13 +62,24 @@ const sortByFilter = (type) => {
     );
   });
 
+  const removeAllFilters = () => {
+    setSearchTerm('')
+    setListData(originalList)
+  };
+
+
   return (
     <div className="app-container">
       <div className="form-section">
         <AddUserForm setListData={setListData} />
       </div>
       <div className="list-section">
-        <Filters setSearchTerm={setSearchTerm} searchTerm={searchTerm} sortByFilter={sortByFilter} />
+        <Filters
+          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm}
+          sortByFilter={sortByFilter}
+          removeAllFilters={removeAllFilters}
+        />
         <UserList listData={filteredUsers} onDeleteUser={handleDeleteUser} />
       </div>
     </div>
