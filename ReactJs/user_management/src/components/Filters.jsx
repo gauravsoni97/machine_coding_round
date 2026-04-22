@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 const Filters = ({ searchTerm, setSearchTerm, sortByFilter }) => {
   return (
@@ -25,11 +25,11 @@ const Filters = ({ searchTerm, setSearchTerm, sortByFilter }) => {
 
         <div className="filter-item">
           <label htmlFor="sortBy">Sort by</label>
-          <select onChange={(e) => sortByFilter(e.target.value)}>
+          <select className="filters-select" onChange={(e) => sortByFilter(e.target.value)}>
             <option value="latest">Newest first</option>
             <option value="oldest">Oldest first</option>
-            <option value="name-asc">Name A → Z</option>
-            <option value="name-desc">Name Z → A</option>
+            <option value="name-asc">Name A â†’ Z</option>
+            <option value="name-desc">Name Z â†’ A</option>
           </select>
         </div>
       </div>
