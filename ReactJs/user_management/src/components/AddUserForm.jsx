@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/AddUserForm.css";
 
-const AddUserForm = ({setListData}) => {
+const AddUserForm = ({ setListData }) => {
   const [userData, setUserData] = useState({
-    userId : null,
+    userId: null,
     userName: "",
     email: "",
     phone: "",
-    createdAt:null,
+    createdAt: null,
   });
+
+  const [formProgress, setFormProgress] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +19,16 @@ const AddUserForm = ({setListData}) => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    let filled = 0;
+
+    if (userData.userName !== "") filled++;
+    if (userData.email !== "") filled++;
+    if (userData.phone !== "") filled++;
+
+    setFormProgress(`${Math.round((filled / 3) * 100)}%`);
+  }, [userData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,6 +78,8 @@ const AddUserForm = ({setListData}) => {
 
         <button type="submit">Add User</button>
       </form>
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <center>Form filled : {formProgress}</center>
     </div>
   );
 };
