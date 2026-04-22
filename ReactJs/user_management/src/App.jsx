@@ -23,8 +23,23 @@ const App = () => {
     );
   };
 
-  useEffect(() => {
+const sortByFilter = (type) => {
+  let sorted = [...listData];
 
+  if (type === "latest") {
+    sorted.sort((a, b) => b.userId - a.userId);
+  } else if (type === "oldest") {
+    sorted.sort((a, b) => a.userId - b.userId);
+  } else if (type === "name-asc") {
+    sorted.sort((a, b) => a.userName.localeCompare(b.userName));
+  } else if (type === "name-desc") {
+    sorted.sort((a, b) => b.userName.localeCompare(a.userName));
+  }
+
+  setListData(sorted);
+};
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setDebounceTerm(searchTerm);
     }, 300);
@@ -47,7 +62,7 @@ const App = () => {
         <AddUserForm setListData={setListData} />
       </div>
       <div className="list-section">
-        <Filters setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+        <Filters setSearchTerm={setSearchTerm} searchTerm={searchTerm} sortByFilter={sortByFilter} />
         <UserList listData={filteredUsers} onDeleteUser={handleDeleteUser} />
       </div>
     </div>
