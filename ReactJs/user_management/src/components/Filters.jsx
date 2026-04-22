@@ -32,20 +32,6 @@ const Filters = ({ searchTerm, setSearchTerm, sortByFilter }) => {
             <option value="name-desc">Name Z → A</option>
           </select>
         </div>
-
-        <div className="filter-item">
-          <label htmlFor="status">Status</label>
-          <select id="status" className="filters-select">
-            <option value="all">All users</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </div>
-
-        <div className="filter-item">
-          <label htmlFor="joined">Joined after</label>
-          <input id="joined" className="filters-input" type="date" />
-        </div>
       </div>
     </section>
   );
