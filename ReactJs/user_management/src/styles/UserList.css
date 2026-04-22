@@ -1,7 +1,7 @@
 .user-list-container {
   max-width: 1200px;
-  margin: 48px auto 60px;
-  padding: 0 32px;
+  margin: 48px 0 60px;
+  padding: 0;
 }
 
 .user-list-container h1 {
